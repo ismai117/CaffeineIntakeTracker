@@ -2,7 +2,6 @@ package main.screens.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Arrangement
@@ -67,11 +66,9 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import main.screens.input.presentation.IntakeViewModel
 import main.screens.input.domain.model.Intake
-import io.ktor.http.headers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import main.components.remainingIndicator
@@ -86,11 +83,10 @@ fun HomeScreen(
 ) {
 
     val intakeViewModel = koinInject<IntakeViewModel>()
-    val caffeineIntakes by intakeViewModel.caffeineIntake.collectAsState()
-
+    val intakes by intakeViewModel.caffeineIntake.collectAsState()
 
     HomeScreenContent(
-        caffeineIntakes = caffeineIntakes,
+        intakes = intakes,
         onEvent = intakeViewModel::onEvent,
         navigateToStatisticsScreen = navigateToStatisticsScreen,
         navigateToSettingsScreen = navigateToSettingsScreen
@@ -105,7 +101,7 @@ fun HomeScreen(
 @Composable
 fun HomeScreenContent(
     modifier: Modifier = Modifier,
-    caffeineIntakes: List<Intake>,
+    intakes: List<Intake>,
     onEvent: (IntakeEvent) -> Unit,
     navigateToStatisticsScreen: () -> Unit,
     navigateToSettingsScreen: () -> Unit,
@@ -245,7 +241,7 @@ fun HomeScreenContent(
                             .align(Alignment.CenterHorizontally)
                     ) {
                         remainingIndicator(
-                            intake = caffeineIntakes.sumOf { it.mg }
+                            intake = intakes.sumOf { it.mg }
                         )
                     }
 
@@ -281,7 +277,7 @@ fun HomeScreenContent(
                         }
 
                         items(
-                            items = caffeineIntakes
+                            items = intakes
                         ) { item ->
 
                             IntakeItem(intake = item)
@@ -314,7 +310,7 @@ fun HomeScreenContent(
                             contentAlignment = Alignment.Center
                         ) {
                             remainingIndicator(
-                                intake = caffeineIntakes.sumOf { it.mg }
+                                intake = intakes.sumOf { it.mg }
                             )
                         }
 
@@ -349,7 +345,7 @@ fun HomeScreenContent(
                             }
 
                             items(
-                                items = caffeineIntakes
+                                items = intakes
                             ) { item ->
 
                                 IntakeItem(intake = item)
