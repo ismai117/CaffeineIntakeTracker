@@ -10,7 +10,9 @@ fun IntakeEntity.mapToDomainModel(): Intake {
     return Intake(
         id = this.id,
         name = this.name,
-        mg = this.mg
+        mg = this.mg,
+        date = this.date,
+        time = this.time
     )
 }
 
@@ -18,7 +20,9 @@ fun Intake.mapFromDomainModel(): IntakeEntity {
     return IntakeEntity(
         id = this.id,
         name = this.name,
-        mg = this.mg
+        mg = this.mg,
+        date = this.date,
+        time = this.time
     )
 }
 

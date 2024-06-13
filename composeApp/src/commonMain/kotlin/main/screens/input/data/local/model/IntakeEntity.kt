@@ -8,5 +8,7 @@ data class IntakeEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
     val name: String,
-    val mg: Double
+    val mg: Double,
+    val date: String,
+    val time: Long
 )

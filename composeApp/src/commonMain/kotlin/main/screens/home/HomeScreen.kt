@@ -11,12 +11,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -72,6 +70,10 @@ import main.screens.input.domain.model.Intake
 import io.ktor.http.headers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import main.components.remainingIndicator
 import main.screens.input.presentation.IntakeEvent
 import org.koin.compose.koinInject
@@ -282,37 +284,7 @@ fun HomeScreenContent(
                             items = caffeineIntakes
                         ) { item ->
 
-                            ElevatedCard(
-                                modifier = modifier
-                                    .fillMaxWidth()
-                                    .height(70.dp),
-                            ) {
-                                Box(
-                                    modifier = modifier
-                                        .fillMaxSize()
-                                ) {
-                                    Text(
-                                        text = item.name,
-                                        style = TextStyle(
-                                            fontSize = 14.sp,
-                                            fontWeight = FontWeight.Bold
-                                        ),
-                                        modifier = modifier
-                                            .padding(start = 12.dp)
-                                            .align(Alignment.CenterStart)
-                                    )
-                                    Text(
-                                        text = "${item.mg} mg",
-                                        style = TextStyle(
-                                            fontSize = 14.sp,
-                                            fontWeight = FontWeight.Bold
-                                        ),
-                                        modifier = modifier
-                                            .padding(end = 12.dp)
-                                            .align(Alignment.CenterEnd)
-                                    )
-                                }
-                            }
+                            IntakeItem(intake = item)
 
                         }
 
@@ -380,37 +352,7 @@ fun HomeScreenContent(
                                 items = caffeineIntakes
                             ) { item ->
 
-                                ElevatedCard(
-                                    modifier = modifier
-                                        .fillMaxWidth()
-                                        .height(70.dp),
-                                ) {
-                                    Box(
-                                        modifier = modifier
-                                            .fillMaxSize()
-                                    ) {
-                                        Text(
-                                            text = item.name,
-                                            style = TextStyle(
-                                                fontSize = 14.sp,
-                                                fontWeight = FontWeight.Bold
-                                            ),
-                                            modifier = modifier
-                                                .padding(start = 12.dp)
-                                                .align(Alignment.CenterStart)
-                                        )
-                                        Text(
-                                            text = "${item.mg} mg",
-                                            style = TextStyle(
-                                                fontSize = 14.sp,
-                                                fontWeight = FontWeight.Bold
-                                            ),
-                                            modifier = modifier
-                                                .padding(end = 12.dp)
-                                                .align(Alignment.CenterEnd)
-                                        )
-                                    }
-                                }
+                                IntakeItem(intake = item)
 
                             }
 
@@ -438,6 +380,55 @@ fun HomeScreenContent(
 
 }
 
+@Composable
+fun IntakeItem(
+    modifier: Modifier = Modifier,
+    intake: Intake
+) {
+    ElevatedCard(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(70.dp),
+    ) {
+        Row(
+            modifier = modifier
+                .fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
+                modifier = modifier
+                    .padding(start = 16.dp)
+                    .weight(1f),
+//                    .border(width = 1.dp, color = Color.Red),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = intake.name,
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+                Text(
+                    text = intake.date,
+                    style = TextStyle(
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+            }
+            Text(
+                text = "${intake.mg} mg",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold
+                ),
+                modifier = modifier
+                    .padding(end = 16.dp)
+            )
+        }
+    }
+}
 
 @Composable
 fun InputDialog(
@@ -655,7 +646,9 @@ fun InputDialog(
                                         Intake(
                                             id = null,
                                             name = itemName,
-                                            mg = mgAmount.toDouble()
+                                            mg = mgAmount.toDouble(),
+                                            date = currentDate(),
+                                            time = currentTime()
                                         )
                                     )
                                 )
@@ -676,4 +669,14 @@ fun InputDialog(
     }
 }
 
+fun currentDate(): String {
+    val currentDateTime = Clock.System.now()
+        .toLocalDateTime(TimeZone.currentSystemDefault())
+    val day = if (currentDateTime.dayOfMonth < 10)  "0${currentDateTime.dayOfMonth}" else "${currentDateTime.dayOfMonth}"
+    val month = if (currentDateTime.monthNumber < 10)  "0${currentDateTime.monthNumber}" else "${currentDateTime.monthNumber}"
+    return "$day/$month/${currentDateTime.year}"
+}
 
+fun currentTime(): Long {
+    return Clock.System.now().toEpochMilliseconds()
+}

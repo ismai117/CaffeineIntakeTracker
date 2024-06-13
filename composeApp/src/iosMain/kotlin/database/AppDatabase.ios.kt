@@ -13,7 +13,6 @@ actual fun getAppDatabase(): AppDatabase {
         name = dbFile,
         factory = { AppDatabase::class.instantiateImpl() }
     )
-        .fallbackToDestructiveMigrationOnDowngrade(false)
         .setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
         .build()

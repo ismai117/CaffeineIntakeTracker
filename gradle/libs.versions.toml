@@ -28,6 +28,7 @@ kolor  = "1.6.1"
 webview = "1.9.10"
 urlencoder = "1.5.0"
 leakcanary = "2.14"
+datetime =  "0.6.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -67,6 +68,8 @@ webview = { module = "io.github.kevinnzou:compose-webview-multiplatform", versio
 urlencoder = { module = "net.thauvin.erik.urlencoder:urlencoder-lib", version.ref = "urlencoder" }
 
 leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
+
+datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 
 [bundles]
 coil-common = ["coil", "coil-ktor"]

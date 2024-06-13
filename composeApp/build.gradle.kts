@@ -73,6 +73,7 @@ kotlin {
             implementation(libs.kolor)
 //            implementation(libs.webview)
             implementation(libs.urlencoder)
+            implementation(libs.datetime)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

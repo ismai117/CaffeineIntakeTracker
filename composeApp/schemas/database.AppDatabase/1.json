@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1bd31191f3a6855ea73676dce50cd0a3",
+    "identityHash": "948e198930d3250e541d8b481e8e3e10",
     "entities": [
       {
         "tableName": "intake_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `mg` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `mg` REAL NOT NULL, `date` TEXT NOT NULL, `time` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -24,6 +24,18 @@
             "columnName": "mg",
             "affinity": "REAL",
             "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -36,7 +48,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1bd31191f3a6855ea73676dce50cd0a3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '948e198930d3250e541d8b481e8e3e10')"
     ]
   }
 }
