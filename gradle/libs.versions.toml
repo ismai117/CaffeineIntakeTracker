@@ -21,12 +21,8 @@ sqlite = "2.5.0-SNAPSHOT"
 koin = "3.5.6"
 koinComposeMultiplatform = "1.2.0-alpha3"
 kotlinx-coroutines = "1.9.0-RC"
-napier = "2.7.1"
-coil = "3.0.0-alpha06"
 windowSizeClass = "0.5.0"
 kolor  = "1.6.1"
-webview = "1.9.10"
-urlencoder = "1.5.0"
 leakcanary = "2.14"
 datetime =  "0.6.0"
 
@@ -57,22 +53,13 @@ kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-
 
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
-napier = { module = "io.github.aakira:napier", version.ref = "napier" }
-
-coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
-coil-ktor = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coil" }
-
 windowSizeClass = { module = "dev.chrisbanes.material3:material3-window-size-class-multiplatform", version.ref = "windowSizeClass" }
 kolor = { module = "com.materialkolor:material-kolor", version.ref = "kolor" }
-webview = { module = "io.github.kevinnzou:compose-webview-multiplatform", version.ref = "webview" }
-urlencoder = { module = "net.thauvin.erik.urlencoder:urlencoder-lib", version.ref = "urlencoder" }
 
 leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 
 datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 
-[bundles]
-coil-common = ["coil", "coil-ktor"]
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
