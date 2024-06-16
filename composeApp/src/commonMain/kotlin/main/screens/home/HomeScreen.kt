@@ -64,6 +64,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import calender.utils.currentDate
+import calender.utils.currentTime
 import main.screens.input.presentation.IntakeViewModel
 import main.screens.input.domain.model.Intake
 import kotlinx.coroutines.delay
@@ -241,7 +243,7 @@ fun HomeScreenContent(
                             .align(Alignment.CenterHorizontally)
                     ) {
                         remainingIndicator(
-                            intake = intakes.sumOf { it.mg }
+                            intake = intakes.filter { it.date == currentDate() }.sumOf { it.mg }
                         )
                     }
 
@@ -277,7 +279,7 @@ fun HomeScreenContent(
                         }
 
                         items(
-                            items = intakes
+                            items = intakes.sortedBy { it.date }
                         ) { item ->
 
                             IntakeItem(intake = item)
@@ -310,7 +312,7 @@ fun HomeScreenContent(
                             contentAlignment = Alignment.Center
                         ) {
                             remainingIndicator(
-                                intake = intakes.sumOf { it.mg }
+                                intake = intakes.filter { it.date == currentDate() }.sumOf { it.mg }
                             )
                         }
 
@@ -345,7 +347,7 @@ fun HomeScreenContent(
                             }
 
                             items(
-                                items = intakes
+                                items = intakes.sortedBy { it.date }
                             ) { item ->
 
                                 IntakeItem(intake = item)
@@ -663,16 +665,4 @@ fun InputDialog(
             }
         }
     }
-}
-
-fun currentDate(): String {
-    val currentDateTime = Clock.System.now()
-        .toLocalDateTime(TimeZone.currentSystemDefault())
-    val day = if (currentDateTime.dayOfMonth < 10)  "0${currentDateTime.dayOfMonth}" else "${currentDateTime.dayOfMonth}"
-    val month = if (currentDateTime.monthNumber < 10)  "0${currentDateTime.monthNumber}" else "${currentDateTime.monthNumber}"
-    return "$day/$month/${currentDateTime.year}"
-}
-
-fun currentTime(): Long {
-    return Clock.System.now().toEpochMilliseconds()
 }

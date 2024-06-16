@@ -74,6 +74,8 @@ kotlin {
 //            implementation(libs.webview)
             implementation(libs.urlencoder)
             implementation(libs.datetime)
+            implementation("io.github.thechance101:chart:Beta-0.0.5")
+            implementation("io.github.koalaplot:koalaplot-core:0.6.0")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
