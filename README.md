@@ -1,14 +1,32 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
+<H1>Caffeine Intake Tracker</H1>
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+Track your caffeine intake!
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Supported Platforms
+- Android
+- IOS
 
+## Stack
+- 🍎 Shared UI - [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform)
+- 🚏 Navigation - [Androidx](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html#sample-project)
+- 🏗 ViewModel - [Androidx](https://touchlab.co/kmp-viewmodel)
+- 📦 Storage - [Room](https://developer.android.com/kotlin/multiplatform/room)
+- 💉 Dependecy Injection - [Koin](https://github.com/InsertKoinIO/koin)
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+##
+
+<pre>
+<h2 align="center">Android</h2>
+</pre>
+<p align="center">
+  <img src="readme-images/android/home.png" height=600>
+  <img src="readme-images/android/statistics.png" height=600>
+</p>
+<pre>  
+<h2 align="center">IOS</h2>
+</pre>
+<p align="center">
+  <img src="readme-images/ios/home.png" height=600>
+  <img src="readme-images/ios/statistics.png" height=600>
+</p>
+
