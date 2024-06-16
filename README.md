@@ -19,14 +19,14 @@ Track your caffeine intake!
 <h2 align="center">Android</h2>
 </pre>
 <p align="center">
-  <img src="readme-images/android/home-screen.png" height=600>
-  <img src="readme-images/android/statistics-screen.png" height=600>
+  <img src="readme-images/android/home.png" height=600>
+  <img src="readme-images/android/statistics.png" height=600>
 </p>
 <pre>  
 <h2 align="center">IOS</h2>
 </pre>
 <p align="center">
-  <img src="readme-images/ios/home-screen.png" height=600>
-  <img src="readme-images/ios/statistics-screen.png" height=600>
+  <img src="readme-images/ios/home.png" height=600>
+  <img src="readme-images/ios/statistics.png" height=600>
 </p>
 
